@@ -1,0 +1,43 @@
+@import "../../utils/variables.scss";
+
+.sign-in-content {
+    box-sizing: border-box;
+    background-color: $white-color;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 13rem;
+    padding: 3rem;
+}
+
+.sign-in-icon {
+    font-size: 5rem;
+}
+
+.input-remember {
+    display: flex;
+}
+
+.input-remember label {
+    margin-left: 0.25rem;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+    font-weight: bold;
+}
+
+.input-wrapper input {
+    padding: 5px;
+    font-size: 1.2rem;
+}
+
+.problemConexion{
+    color: $message-error-color;
+    font-weight: bolder;
+}

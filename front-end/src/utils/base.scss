@@ -1,9 +1,11 @@
+@import "./variables.scss";
+
 html {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: $text-color;
 }
 
 body {
@@ -18,7 +20,19 @@ body {
 }
 
 .bg-dark {
-    background-color: #12002b;
+    background-color: $background-color;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 85vh;
+}
+
+.bg-dark2 {
+    background-color: $background-color;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 85vh;
 }
 
 .sr-only {

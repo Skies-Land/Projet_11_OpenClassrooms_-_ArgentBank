@@ -1,12 +1,12 @@
 /*=============== IMPORT COMPONENTS ===============*/
-@import "./components/account/account.scss";
-@import "./components/buttons/buttons.scss";
+@import"./components/button/button.scss";
 @import "./components/features/features.scss";
 @import "./components/footer/footer.scss";
 @import "./components/header/header.scss";
 @import "./components/hero/hero.scss";
-@import "./components/input/input.scss";
-@import "./components/sign-in/sign-in.scss";
+@import "./components/navbar/navbar.scss";
+@import "./components/sign-in/signIn.scss";
+@import "./components/user/user.scss";
 
 /*=============== IMPORT UTILS ===============*/
 @import "./utils/base.scss";
