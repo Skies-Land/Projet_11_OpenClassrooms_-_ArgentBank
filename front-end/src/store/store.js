@@ -22,6 +22,19 @@ export const store = configureStore({
         user: persistedReducer, // Utilisation du réducteur persistant pour le slice user
     },
 
+    /** ===== MIDDLEWARE CONFIG =====
+    * 
+    * - Middleware : La configuration du middleware dans ce code est utilisée pour gérer la sérialisation des actions et de l'état. En utilisant getDefaultMiddleware avec des paramètres personnalisés, le code ignore certaines actions spécifiques à redux-persist qui ne sont pas sérialisables.
+    * - PersistReducer : Assure que le slice user persiste son état en utilisant le storage local.
+    * - PersistStore : Synchronise le store avec le storage pour maintenir l'état utilisateur entre les rechargements de la page.
+    * 
+    */
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: ["persist/PERSIST", "persist/REHYDRATE", "persist/PAUSE", "persist/PURGE", "persist/REGISTER", "persist/FLUSH"], // Ignorer l'action de persistance
+        }
+    }),
+
 });
 
 // Création d'un persistor pour gérer la persistance du store
