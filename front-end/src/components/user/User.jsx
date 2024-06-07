@@ -1,47 +1,41 @@
-import EditName from "../edit-name/EditName";
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// Importation du tableau du fichier JSON
+import Accounts from '../../data/accounts.json'; 
+// Importation du composant
+import Account from '../account/Account';
+
+import Button from '../button/Button';
 
 const User = () => {
+    const username = useSelector(state =>(state.login.userProfil.userName))
+    
+    const navigate = useNavigate();
+    const handleEditUser = (e) => {
+        e.preventDefault();
+        navigate('/editUser');
+    };
+
     return (
         <main className="main bg-dark2">
-            <EditName />
             <div className="header">
-                <h1>Welcome back<br />Tony Jarvis!</h1>
-                <button className="edit-button">Edit Name</button>
+                <h1 className="title">Welcome back {username}</h1>
+                <Button 
+                    className={"edit-button"}
+                    btnText={"Edit Name"}
+                    onClick={handleEditUser}>
+                </Button>
             </div>
             <h2 className="sr-only">Accounts</h2>
-
-            <section className="account">
-                <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-                    <p className="account-amount">$2,082.79</p>
-                    <p className="account-amount-description">Available Balance</p>
-                </div>
-                <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
-                </div>
-            </section>
-
-            <section className="account">
-                <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-                    <p className="account-amount">$10,928.42</p>
-                    <p className="account-amount-description">Available Balance</p>
-                </div>
-                <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
-                </div>
-            </section>
-
-            <section className="account">
-                <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-                    <p className="account-amount">$184.30</p>
-                    <p className="account-amount-description">Current Balance</p>
-                </div>
-                <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
-                </div>
-            </section>
+            {Accounts.map((account, index) => (
+                <Account 
+                    key={"account"+index}
+                    title={account.title}
+                    amount={account.amount}
+                    description={account.description}
+                />
+            ))}
         </main>
     );
 };
