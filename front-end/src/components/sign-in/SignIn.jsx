@@ -1,46 +1,93 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../button/Button';
+import { getAccounts, getUser } from '../../services/api';
+
+// Import Redux
+import { useDispatch } from 'react-redux';
+import { loginUser, infoUser } from '../../store/userSlice';
+
 const SignIn = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [remenberMe, setRemenberMe] = useState(false);
+    const [erreur, setErreur] = useState("");
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const userData = await getAccounts(email, password);
+            const token = userData.token;
+            await dispatch(loginUser(token));
+            if (remenberMe) {
+                localStorage.setItem("token", token);
+            }
+
+            const userInfo = await getUser(token);
+            const userinfos = {
+                email: userInfo.body.email,
+                userName: userInfo.body.userName,
+                firstName: userInfo.body.firstName,
+                lastName: userInfo.body.lastName,
+            };
+            await dispatch(infoUser(userinfos));
+            navigate("/User");
+        } catch (error) {
+            console.error("Une erreur est survenu lors de la connexion", error);
+            setErreur("Identifiants incorrects");
+        }
+    };
+
+    const handleRememberMe = (e) => {
+        setRemenberMe(e.target.checked);
+    };
+
     return (
-        <main className="main bg-dark">
-            <section className="sign-in-content">
-                <i className="fa fa-user-circle sign-in-icon"></i>
+        <main className='main bg-dark'>
+            <section className='sign-in-content'>
+                <i className='fa fa-user-circle sign-in-icon'></i>
                 <h1>Sign In</h1>
 
-                <form>
-                    <div className="input-wrapper">
-                        <label htmlFor="username">User mail</label>
-                        <input 
-                            type="text" 
-                            id="username"
-                            placeholder="Write your email"
-                            // required
+                <form onSubmit={handleLogin}>
+                    <div className='input-wrapper'>
+                        <label htmlFor='userEmail'>User Email</label>
+                        <input
+                            type='email'
+                            id='email'
+                            name='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder=' Your email address'
+                            required
                         />
                     </div>
-
-                    <div className="input-wrapper">
-                        <label htmlFor="password">Password</label>
-                        <input 
-                            type="password" 
-                            id="password"
-                            placeholder="Write your password"
-                            // required
+                    <div className='input-wrapper'>
+                        <label htmlFor='password'>Password</label>
+                        <input
+                            type='password'
+                            id='password'
+                            name='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
-
-                    <div className="input-remember">
-                        <input 
-                        type="checkbox" 
-                        id="remember-me"
+                    <div className='input-remember'>
+                        <input
+                            type='checkbox'
+                            id='rememberMe'
+                            name='rememberMe'
+                            checked={remenberMe}
+                            onChange={handleRememberMe}
                         />
-                        <label htmlFor="remember-me">Remember me</label>
+                        <label htmlFor='rememberMe'>Remember me</label>
                     </div>
-
-                    <button className="sign-in-button">Sign In</button>
-                    {/* <!-- PLACEHOLDER DUE TO STATIC SITE -->
-                    <a href="./user.html" class="sign-in-button">Sign In</a>
-                    <!-- SHOULD BE THE BUTTON BELOW -->
-                    <!-- <button class="sign-in-button">Sign In</button> -->
-                    <!--  --> */}
+                    <Button btnText={"Sign In"} className={"sign-in-button"} />
                 </form>
+                {erreur && <p className='problemConexion'>{erreur}</p>}
             </section>
         </main>
     );

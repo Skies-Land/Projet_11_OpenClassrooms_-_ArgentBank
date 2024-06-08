@@ -19,7 +19,7 @@ const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
 // Configuration du store Redux en utilisant le réducteur persistant
 export const store = configureStore({
     reducer: {
-        user: persistedReducer, // Utilisation du réducteur persistant pour le slice user
+        login: persistedReducer, // Utilisation du réducteur persistant pour le slice user
     },
 
     /** ===== MIDDLEWARE CONFIG =====
