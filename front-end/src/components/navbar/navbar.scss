@@ -40,3 +40,25 @@
     max-width: 100%;
     width: 200px;
 }
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userName {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-decoration: none;
+    p {
+        margin-right: 15px;
+        &:hover {
+        text-decoration: underline;
+        }
+    }
+    i {
+        margin-right: 5px;
+    }
+}
