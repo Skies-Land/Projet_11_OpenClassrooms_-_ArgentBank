@@ -123,3 +123,34 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+* 
+* 1. Importations :
+*    `useState` et `useNavigate` sont importés de React pour gérer l'état et la navigation.
+*    `Button` est un composant personnalisé pour le bouton de soumission.
+*    `getAccounts` et `getUser` sont des fonctions d'appel API pour gérer la connexion et récupérer les informations utilisateur.
+*    `useDispatch` est importé de Redux pour dispatcher des actions.
+*    `loginUser` et `infoUser` sont des actions définies dans `userSlice` pour gérer l'état utilisateur dans Redux.
+* 
+* 2. Hooks d'état :
+*    `useState` est utilisé pour gérer les valeurs de l'email, du mot de passe, du checkbox "Remember Me", et des erreurs.
+* 
+* 3. `handleLogin` :
+*    Empêche le comportement par défaut du formulaire.
+*    Appelle `getAccounts` avec l'email et le mot de passe pour obtenir un token.
+*    Dispatch l'action `loginUser` avec le token.
+*    Si "Remember Me" est coché, enregistre le token dans `localStorage`.
+*    Appelle `getUser` avec le token pour obtenir les informations utilisateur.
+*    Dispatch l'action `infoUser` avec les informations utilisateur.
+*    Navigue vers la page utilisateur en cas de succès.
+*    En cas d'erreur, affiche un message d'erreur.
+*
+* 4. `handleRememberMe` :
+*    Met à jour l'état `rememberMe` quand la case à cocher est modifiée.
+*
+* 5. Rendu :
+*    Retourne le formulaire de connexion avec les champs pour l'email, le mot de passe et la case "Remember Me".
+*    Inclut un bouton de soumission et affiche un message d'erreur en cas de besoin.
+*
+*/

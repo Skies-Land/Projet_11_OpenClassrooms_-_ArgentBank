@@ -58,3 +58,26 @@ const User = () => {
 };
 
 export default User;
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+* 
+* 1. Importations :
+*    `useNavigate` de React Router pour la navigation entre les pages.
+*    `useSelector` de Redux pour accéder au state global.
+*    `Accounts` importé depuis un fichier JSON local contenant des données de compte.
+*    `Account` et Button sont des composants personnalisés.
+* 
+* 2. Récupération du nom d'utilisateur :
+*    `useSelector` est utilisé pour accéder au state Redux et récupérer le nom d'utilisateur à partir de `state.login.userProfil.userName`.
+*
+* 3. `handleEditUser` :
+*    Empêche le comportement par défaut du bouton.
+*    Utilise `navigate` pour rediriger vers la page `/editUser`.
+*
+* 4. Rendu :
+*    Retourne un `main` avec une classe de style `bg-dark2`.
+*    Affiche un titre de bienvenue avec le nom d'utilisateur.
+*    Inclut un bouton pour éditer le nom de l'utilisateur, qui déclenche `handleEditUser` au clic.
+*    Affiche une liste des comptes en parcourant le tableau `Accounts` et en rendant un composant `Account` pour chaque élément.
+*
+*/

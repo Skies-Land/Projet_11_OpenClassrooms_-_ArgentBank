@@ -15,3 +15,11 @@ const Footer = () => {
 };
 
 export default Footer;
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+*
+* 1. Rendu du pied de page :
+*    Le composant `Footer` rend le pied de page (`<footer>`).
+*    Il inclut un paragraphe (`<p>`) avec la classe `footer-text`, qui affiche le texte de droit d'auteur "Copyright 2020 Argent Bank".
+* 
+*/ 

@@ -84,3 +84,30 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+* 
+* 1. `<nav className="main-nav">` :
+*    La balise `nav` contient l'ensemble de la barre de navigation et utilise la classe `main-nav` pour le style.
+* 
+* 2. Logo de la banque :
+*    Utilise `NavLink` pour rendre le logo cliquable, redirigeant vers la page d'accueil (`"/"`).
+*    `img` affiche le logo de la banque en utilisant l'importation `logo`.
+*    `h1` avec la classe `sr-only` est utilisé pour l'accessibilité, afin que les lecteurs d'écran puissent lire "Argent Bank".
+* 
+* 3. Bloc de connexion :
+*    La `div` avec la classe `login` contient les éléments relatifs à la connexion de l'utilisateur.
+*
+* 4. Affichage du nom d'utilisateur :
+*    Si `loginStore` et `loginStore.userProfil.userName` existent (ce qui signifie que l'utilisateur est connecté), affiche un lien (`<Link>`) vers la page utilisateur (`"/User"`).
+*    Le lien contient une icône utilisateur (`<i className="fa fa-user-circle"></i>`) et le nom d'utilisateur (`<p>{loginStore.userProfil.userName}</p>`).
+*
+* 5. Lien de déconnexion ou de connexion :
+*    Si `token` est présent (ce qui signifie que l'utilisateur est connecté), affiche un lien (`<NavLink>`) pour déconnecter l'utilisateur.
+*       - Le lien redirige vers la page d'accueil (`"/"`) et déclenche la fonction `handleRedirection` au clic.
+*       - Utilise `LuLogOut` pour afficher l'icône de déconnexion et affiche le texte "Sign Out".
+*    Si `token` n'est pas présent (ce qui signifie que l'utilisateur n'est pas connecté), affiche un lien (`<NavLink>`) vers la page de connexion (`"/SignInPage"`).
+*    Utilise une icône utilisateur (`<i className="fa fa-user-circle"></i>`) et affiche le texte "Sign In".
+*
+*/

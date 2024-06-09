@@ -38,3 +38,22 @@ const HomeMain = () => {
 };
 
 export default HomeMain;
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+* 
+* 1. Importations :
+*    `Features` : Composant pour afficher les fonctionnalités.
+*    `Hero` : Composant pour l'introduction de la page.
+*    `featuresData` : Importation des données des fonctionnalités à partir du fichier JSON local.
+*
+* 2. Données des fonctionnalités :
+*    `features` : Contient les données des fonctionnalités extraites de `featuresData.features`.
+*
+* 3. Rendu :
+*    La balise `div` contient l'ensemble du contenu de la page d'accueil.
+*    `Hero` est rendu en premier pour l'introduction de la page.
+*    La balise `section` contient la liste des fonctionnalités.
+*    Un titre de la section avec la classe `sr-only` est inclus pour l'accessibilité.
+*    Les fonctionnalités sont rendues en parcourant les données `features` et en utilisant le composant `Features`. Chaque fonctionnalité est représentée par une instance de `Features`, avec les propriétés `image`, `alt`, `title`, et `paragraph`.
+* 
+*/

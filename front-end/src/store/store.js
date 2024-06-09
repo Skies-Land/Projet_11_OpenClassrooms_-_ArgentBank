@@ -6,17 +6,32 @@ import userSlice from '../store/userSlice'; // Importation de userSlice
 /** ===== PERSIST CONFIG =====
 * 
 * Configuration du store avec persistance permet de conserver l'état utilisateur même après un rechargement de la page en utilisant Redux Persist avec le stockage local du navigateur.
+*
+* @type {Object}
+* @property {string} key - Clé racine de la configuration de persistance.
+* @property {Object} storage - Type de stockage utilisé (localStorage dans ce cas).
 * 
 */
 const persistConfig = {
-    key: 'root', // Clé de stockage dans le storage local
-    storage, // Type de stockage utilisé
+    key: 'root',
+    storage,
 };
 
-// Création d'un réducteur persistant pour le slice user
+/** ===== PERSISTED REDUCER =====
+* 
+* Réducteur persisté combinant la configuration de persistance et le slice utilisateur.
+*
+*/
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
 
-// Configuration du store Redux en utilisant le réducteur persistant
+/** ===== STORE CONFIG =====
+* 
+* Configuration du store Redux.
+*
+* Le store est configuré avec le réducteur persisté et une middleware personnalisée
+* pour ignorer certaines actions de Redux Persist lors de la vérification de la sérialisation.
+*
+*/
 export const store = configureStore({
     reducer: {
         login: persistedReducer, // Utilisation du réducteur persistant pour le slice user
@@ -31,11 +46,42 @@ export const store = configureStore({
     */
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: {
-            ignoredActions: ["persist/PERSIST", "persist/REHYDRATE", "persist/PAUSE", "persist/PURGE", "persist/REGISTER", "persist/FLUSH"], // Ignorer l'action de persistance
+            // Ignorer l'action de persistance de redux-persist
+            ignoredActions: [
+                "persist/PERSIST", 
+                "persist/REHYDRATE", 
+                "persist/PAUSE", 
+                "persist/PURGE", 
+                "persist/REGISTER", 
+                "persist/FLUSH"
+            ], 
         }
     }),
 
 });
 
-// Création d'un persistor pour gérer la persistance du store
+/** ===== PERSISTOR =====
+* 
+* Persister pour le store Redux.
+*
+* Ce persister est utilisé pour rehydrater le store à partir du stockage persistant.
+*
+*/
 export const persistor = persistStore(store);
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+*
+* 1. `persistConfig` :
+*     La configuration de persistance (`persistConfig`) spécifie la clé de stockage racine (`key: 'root'`) et le type de stockage utilisé (`storage`). Ici, `storage` fait référence à `localStorage`.
+* 
+* 2. `persistedReducer` :
+*    `persistedReducer` est un réducteur qui combine la configuration de persistance et le réducteur de `userSlice`. Cela permet de persister l'état du slice utilisateur dans `localStorage`.
+* 
+* 3. `configureStore :`
+*    `configureStore de `@reduxjs/toolkit` configure le store Redux avec le réducteur persisté (`persistedReducer`).
+*    La middleware par défaut est modifiée pour ignorer certaines actions spécifiques de Redux Persist lors de la vérification de la sérialisation (`serializableCheck`).
+* 
+* 4. `persistStore` :
+*    `persistStore` crée un persister qui sera utilisé pour rehydrater le store Redux à partir du stockage persistant. Ce persister est exporté pour être utilisé dans le point d'entrée principal de l'application (`main.jsx`).
+*
+*/

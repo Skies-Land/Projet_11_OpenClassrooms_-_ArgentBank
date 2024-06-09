@@ -113,3 +113,25 @@ const EditName = () => {
 };
 
 export default EditName;
+
+/** ===== EXPLICATIONS SUPPLÉMENTAIRES =====
+* 
+* 1. Récupération des données utilisateur :
+*    Utilisation de `useSelector` pour extraire les données utilisateur (`userProfil` et `userToken`) du store Redux.
+*    `storeUserProfil` contient les données du profil utilisateur.
+* 
+* 2. Modification du nom d'utilisateur :
+*    Le composant permet à l'utilisateur de saisir un nouveau nom d'utilisateur dans un champ de saisie.
+*    La fonction `handleChangeUser` met à jour l'état local `newUserName` avec la valeur saisie par l'utilisateur.
+*
+* 3. Soumission du formulaire :
+*    Lors de la soumission du formulaire, la fonction `handleSubmitForm` est appelée.
+*    Cette fonction envoie une requête à l'API pour changer le nom d'utilisateur.
+*    Si la requête est réussie (statut 200), le nom d'utilisateur dans le store Redux est mis à jour avec le nouveau nom.
+*    Sinon, une erreur est affichée dans la console.
+*
+* 4. Annulation de la modification :
+*    L'utilisateur peut annuler la modification en cliquant sur le bouton "Cancel".
+*    La fonction `handleCancel` redirige l'utilisateur vers la page utilisateur (/User).
+*
+*/
