@@ -14,6 +14,7 @@ const Navbar = () => {
 
     const handleRedirection = () => {
         localStorage.removeItem("token");
+        console.log("Déconnexion de l'utilisateur");
         dispatch(logoutUser());
     };
 
@@ -33,7 +34,7 @@ const Navbar = () => {
                     {loginStore &&
                         loginStore.userProfil &&
                         loginStore.userProfil.userName && (
-                            <Link to="/user" className="userName">
+                            <Link to="/User" className="userName">
                                 <i className="fa fa-user-circle"></i>
                                 <p>{loginStore.userProfil.userName}</p>
                             </Link>
