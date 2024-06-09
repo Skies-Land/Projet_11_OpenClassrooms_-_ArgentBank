@@ -1,5 +1,18 @@
 import { PropTypes } from "prop-types";
 
+/** ===== FEATURES ===== 
+* 
+* Composant Features pour afficher une fonctionnalité.
+*
+* Ce composant affiche une fonctionnalité avec une icône, un titre et un paragraphe.
+*
+* @component
+* @param {object} props - Les propriétés de la fonctionnalité.
+* @param {string} props.image - L'URL de l'image représentant l'icône de la fonctionnalité.
+* @param {string} props.alt - Le texte alternatif de l'image.
+* @param {string} props.title - Le titre de la fonctionnalité.
+* @param {string} props.paragraph - Le paragraphe décrivant la fonctionnalité.
+*/
 const Features = ({ image, alt, title, paragraph }) => {
     return (
         <div className="feature-item">
@@ -14,6 +27,7 @@ const Features = ({ image, alt, title, paragraph }) => {
     );
 };
 
+// Validation des types des props avec PropTypes passées au composant Features
 Features.propTypes = {
     paragraph: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
