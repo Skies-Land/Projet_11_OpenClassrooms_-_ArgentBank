@@ -37,7 +37,7 @@ const SignIn = () => {
         try {
             // Appel à l'API pour obtenir les données de l'utilisateur
             const userData = await getAccounts(email, password);
-            const token = userData.token;
+            const token = userData.body.token;
             // Dispatch de l'action loginUser avec le token
             await dispatch(loginUser(token));
             // Enregistrement du token dans le localStorage si "Remember Me" est coché

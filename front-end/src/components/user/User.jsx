@@ -31,7 +31,7 @@ const User = () => {
     */
     const handleEditUser = (e) => {
         e.preventDefault();
-        navigate('/editUser');
+        navigate('/EditName');
     };
 
     return (
