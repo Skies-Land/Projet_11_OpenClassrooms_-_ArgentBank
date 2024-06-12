@@ -58,10 +58,10 @@ const EditName = () => {
     */
     const handleSubmitForm = async (e) => {
         e.preventDefault();
-        const updateUserName = await changeUser(newUserName, token); // Appel de l'API pour changer le nom d'utilisateur
-        if (updateUserName.statue === 200) {
+        const updateNameUser = await changeUser(newUserName, token); // Appel de l'API pour changer le nom d'utilisateur
+        if (updateNameUser.status === 200) {
             dispatch(infoUserName(newUserName)); // Mise à jour du nom d'utilisateur dans le store Redux
-            console.log("Changement du nom d'utilisateur effectué", updateUserName.status);
+            console.log("Changement du nom d'utilisateur effectué", updateNameUser.status);
         } else {
             console.error("Erreur lors du changement du nom d'utilisateur");
         }
@@ -72,7 +72,7 @@ const EditName = () => {
                 <i className='fa fa-user-circle sign-in-icon'></i>
                 <h1>Edit user info</h1>
 
-                <form onSubmit={handleSubmitForm} onClick={(event) => event.stopPropagation}>
+                <form onSubmit={handleSubmitForm} onClick={(event) => event.stopPropagation()}>
                     <div className='input-wrapper'>
                         <label htmlFor='username'>Username</label>
                         <input

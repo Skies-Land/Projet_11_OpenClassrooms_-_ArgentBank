@@ -95,43 +95,22 @@ export const getUser = async (token) => {
 };
 
 /** ===== CHANGE USER =====
-* 
-* Fonction permettant de mettre à jour le nom d'utilisateur en envoyant une requête PUT à l'endpoint du profil avec le nouveau nom d'utilisateur et le jeton d'authentification (token) fournis.
 *
-* @async
-* @function changeUser
+* Change le nom d'utilisateur d'un utilisateur.
+*
+* @param {string} newUserName - Le nouveau nom d'utilisateur.
 * @param {string} token - Le jeton d'authentification de l'utilisateur.
-* @param {string} newUserName - Le nouveau nom d'utilisateur à définir.
-* @returns {Promise<Object>} Les données de réponse de l'API après la mise à jour du profil utilisateur.
-* @throws {Error} Si la requête échoue ou si une erreur réseau se produit.
+* @returns {Promise<Object>} La réponse de l'API sous forme de JSON.
+*
 */
-export const changeUser = async (token, newUserName) => {
-  const requestUrl = `${API_URL}/user/profile`;
-  const requestHeaders = {
-    Accept: "*/*",
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
-  const requestBody = JSON.stringify({
-    userName: newUserName,
+export async function changeUser (newUserName,token){
+  const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userName: newUserName }),
   });
-
-  try {
-    const response = await fetch(requestUrl, {
-      method: "PUT",
-      headers: requestHeaders,
-      body: requestBody,
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      const userProfile = data.body;
-      console.log(userProfile);
-      return data;
-    } else {
-      throw new Error("Échec de la mise à jour du nom d'utilisateur");
-    }
-  } catch (error) {
-    throw error;
-  }
-};
+  return response.json();
+}
