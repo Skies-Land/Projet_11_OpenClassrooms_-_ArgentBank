@@ -9,7 +9,7 @@ if (!window.fetch) {
 * URL de base de l'API.
 * @constant {string}
 */
-const API_URL = "http://localhost:3001/api/v1";
+const API_URL = "http://localhost:3001/api/v1/user";
 
 /** ===== GET ACCOUNTS =====
 * 
@@ -23,7 +23,7 @@ const API_URL = "http://localhost:3001/api/v1";
 * @throws {Error} Si la connexion échoue ou si une erreur réseau se produit.
 */
 export const getAccounts = async (email, password) => {
-  const requestUrl = `${API_URL}/user/login`;
+  const requestUrl = `${API_URL}/login`;
   const requestHeaders = {
     "Content-Type": "application/json",
   };
@@ -64,7 +64,7 @@ export const getAccounts = async (email, password) => {
 * @throws {Error} Si la requête échoue ou si une erreur réseau se produit.
 */
 export const getUser = async (token) => {
-  const requestUrl = `${API_URL}/user/profile`;
+  const requestUrl = `${API_URL}/profile`;
   const requestHeaders = {
     Accept: "*/*",
     "Content-Type": "application/json",
@@ -104,7 +104,8 @@ export const getUser = async (token) => {
 *
 */
 export async function changeUser (newUserName,token){
-  const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+  const requestUrl = `${API_URL}/profile`;
+  const response = await fetch(requestUrl, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,

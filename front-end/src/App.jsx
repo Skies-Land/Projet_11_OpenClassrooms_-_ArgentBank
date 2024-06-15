@@ -64,17 +64,6 @@ const App = () => {
               </PrivateRoutes>
             } 
           />
-
-          {/* Route pour la page de modification du nom utilisateur -- protégée -- */}
-          <Route 
-            path="/EditName" 
-            element={
-              <PrivateRoutes>
-                <EditName />
-              </PrivateRoutes>
-            }
-          />
-
         </Routes>
       <Footer />
     </BrowserRouter>
@@ -97,7 +86,7 @@ export default App;
 *    Les routes sont définies à l'aide de `Routes` et `Route` :
 *      - La route `/` rend la page d'accueil `HomePage`.
 *      - La route `/SignInPage` rend la page de connexion `SignInPage` avec une redirection si l'utilisateur est déjà connecté.
-*      - Les routes `/User` et `/EditName` sont protégées par le composant `PrivateRoutes` et rendent respectivement les composants `User` et `EditName`.
+*      - La route `/User` est protégée par le composant `PrivateRoutes` et rendent respectivement le composant `User`.
 *    Le `Footer` est inclus en bas de toutes les pages.
 *
 */
