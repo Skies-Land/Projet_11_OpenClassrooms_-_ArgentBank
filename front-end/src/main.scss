@@ -1,12 +1,18 @@
-/*=============== IMPORT COMPONENTS ===============*/
-@import"./components/button/button.scss";
-@import "./components/features/features.scss";
-@import "./components/footer/footer.scss";
-@import "./components/header/header.scss";
+/*=============== COMPONENTS ===============*/
+@import "./components/button/button.scss";
 @import "./components/hero/hero.scss";
-@import "./components/navbar/navbar.scss";
-@import "./components/sign-in/signIn.scss";
-@import "./components/user/user.scss";
 
-/*=============== IMPORT BASE ===============*/
+/*=============== CONTAINER ===============*/
+@import "./container/features/features.scss";
+@import "./container/navbar/navbar.scss";
+
+/*=============== LAYOUT ===============*/
+@import "./layout/footer/footer.scss";
+@import "./layout/header/header.scss";
+
+/*=============== PAGES ===============*/
+@import "./pages/sign-in/signIn.scss";
+@import "./pages/user/user.scss";
+
+/*=============== BASE ===============*/
 @import "./scss/base.scss";

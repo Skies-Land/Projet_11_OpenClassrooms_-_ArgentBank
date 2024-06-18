@@ -4,24 +4,10 @@ if (!window.fetch) {
 }
 //#endregion
 
-/** ===== API_URL =====
-* 
-* URL de base de l'API.
-* @constant {string}
-*/
+// URL de base de l'API.
 const API_URL = "http://localhost:3001/api/v1/user";
 
-/** ===== GET ACCOUNTS =====
-* 
-* Fonction permettant d'envoyer une requête POST à l'endpoint de connexion avec l'email et le mot de passe fournis.
-*
-* @async
-* @function getAccounts
-* @param {string} email - L'email de l'utilisateur.
-* @param {string} password - Le mot de passe de l'utilisateur.
-* @returns {Promise<Object>} Les données de réponse de l'API si la connexion réussit.
-* @throws {Error} Si la connexion échoue ou si une erreur réseau se produit.
-*/
+// Envoi d'une requête POST à l'endpoint de connexion avec l'email et le mot de passe fournis.
 export const getAccounts = async (email, password) => {
   const requestUrl = `${API_URL}/login`;
   const requestHeaders = {
@@ -53,16 +39,7 @@ export const getAccounts = async (email, password) => {
   }
 };
 
-/** ===== GET USER =====
-* 
-* Fonction permettant de récupérer le profil de l'utilisateur après la connexion en utilisant un jeton d'authentification (token).
-*
-* @async
-* @function getUser
-* @param {string} token - Le jeton d'authentification de l'utilisateur.
-* @returns {Promise<Object>} Les données de réponse de l'API contenant le profil utilisateur.
-* @throws {Error} Si la requête échoue ou si une erreur réseau se produit.
-*/
+// Envoi d'une requête POST pour récupérer le profil utilisateur après la connexion en utilisant un jeton d'authentification (token).
 export const getUser = async (token) => {
   const requestUrl = `${API_URL}/profile`;
   const requestHeaders = {
@@ -94,15 +71,7 @@ export const getUser = async (token) => {
   }
 };
 
-/** ===== CHANGE USER =====
-*
-* Change le nom d'utilisateur d'un utilisateur.
-*
-* @param {string} newUserName - Le nouveau nom d'utilisateur.
-* @param {string} token - Le jeton d'authentification de l'utilisateur.
-* @returns {Promise<Object>} La réponse de l'API sous forme de JSON.
-*
-*/
+// Envoie d'une requête PUT pour changer le nom d'utilisateur de l'utilisateur.
 export async function changeUser (newUserName,token){
   const requestUrl = `${API_URL}/profile`;
   const response = await fetch(requestUrl, {
