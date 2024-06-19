@@ -4,12 +4,10 @@
     box-sizing: border-box;
     background-color: $white-color;
     width: 500px;
-    margin: 0 auto;
-    margin-top: 13rem;
-    padding: 3rem;
+    padding: 4rem;
     h1, .sign-in-icon {
         color: $text-color;
-    }
+    }    
 }
 
 .sign-in-icon {
@@ -45,7 +43,21 @@
     font-weight: bolder;
 }
 
+@media screen and (max-width: 768px) {
+    .sign-in-content {
+        width: 90%;
+        margin-top: 5rem;
+        padding: 1.5rem;
+    }
+}
+
 @media screen and (min-width: 1024px) {
+    .sign-in-content {
+        margin-top: 3rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
     .sign-in-content {
         margin-top: 3rem;
     }
