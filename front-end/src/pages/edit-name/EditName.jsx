@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserName } from "../../redux/userSlice";
 import Button from "../../components/button/Button";
-import { changeUser } from "../../services/api";
+import { actionValidateForm } from "../../services/action-ValidateForm";
 
 const EditName = ({ onCancel }) => {
   // Sélection des données utilisateur depuis Redux
@@ -24,18 +23,7 @@ const EditName = ({ onCancel }) => {
 
   // Fonction pour soumettre le formulaire d'édition
   const validateForm = async (e) => {
-    e.preventDefault();
-    try {
-      const updateNameUser = await changeUser(modifiedUserName, userToken);
-      if (updateNameUser.status === 200) {
-        dispatch(updateUserName(modifiedUserName));
-        if (onCancel) onCancel();
-      } else {
-        console.error("Impossible de changer le nom d'utilisateur");
-      }
-    } catch (error) {
-      console.error("Erreur de traitement lors du changement du nom d'utilisateur", error);
-    }
+    actionValidateForm(e, modifiedUserName, userToken, dispatch, onCancel);
   };
 
   return (

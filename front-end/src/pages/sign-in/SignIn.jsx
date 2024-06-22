@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
-import { getAccounts, getUser } from "../../services/api";
 import { useDispatch } from "react-redux";
-import { authenticateUser, userInfo } from "../../redux/userSlice";
+import { actionSubmitLogin } from "../../services/action-SubmitLogin";
 
 const SignIn = () => {
   // Gestion des états pour le formulaire de connexion
@@ -25,30 +24,7 @@ const SignIn = () => {
   // Fonction pour gérer la soumission du formulaire de connexion
   const submitLogin = async (e) => {
     e.preventDefault();
-    const { email, password, rememberMe } = formData;
-    try {
-      // Récupération du token utilisateur à partir de l'API
-      const { body: { token } } = await getAccounts(email, password);
-      // Enregistrement du token dans le store Redux
-      dispatch(authenticateUser(token));
-
-      // Enregistrement du token dans le localStorage si l'utilisateur a choisi "Remember me"
-      if (rememberMe) {
-        localStorage.setItem("token", token);
-      }
-
-      // Récupération des informations utilisateur à partir de l'API
-      const { body: userInformation } = await getUser(token);
-      // Enregistrement des informations utilisateur dans le store Redux
-      dispatch(userInfo(userInformation));
-
-      // Redirection vers la page utilisateur après connexion réussie
-      navigate("/User");
-    } catch (error) {
-      // Gestion des erreurs de connexion
-      console.error("Le processus de connexion a rencontré une erreur", error);
-      setError("Impossible de se connecter, veuillez vérifier votre email et votre mot de passe.");
-    }
+    actionSubmitLogin(formData, dispatch, navigate, setError);
   };
 
   return (
